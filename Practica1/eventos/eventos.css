@@ -74,16 +74,17 @@
 	text-decoration: none;
 }
 
-/* Color de fondo del elemento del menu auxiliar cuando el ratón está sobre el. */
+/* Color del elemento del menu auxiliar cuando el ratón está sobre el. */
 #menuAux a:hover {
   background-color: #67b500;
 }
+
 
 #texto table{
 	width:100%;
 }
 	
-/* Alineación de la tabla donde están todos los eventos. */
+
 #texto td{
 	text-align: center;
 }
@@ -93,14 +94,52 @@
 #pie p {
 	text-align:center;
 }
+/* ******HASTA AQUÍ IGUAL QUE PORTADA.CSS****** */
 
-/* Tamaño de todas las imágenes que pertenecen al div con id texto. */
+#texto p{
+	width: 70%;
+}
+
 #texto img {
 	width: 12em;
 	height: 8em;
+	display:inline-block;
+}
+#texto img.izq {
+	float: left;
+}
+#texto img.der {
+	float: right;
+}
+#texto h1 {
+	font-size: 1.5em;
 }
 
-/* Efecto visual cuando se pasa el ratón sobre alguna imagen. */
-#texto img:hover {
+#texto a.icon img{
+	width: 1.5em;
+	height: 1.5em;
+	padding-top: 1em;
+	float:left;	
+}
+/* Efecto de zoom al pasar el ratón sobre un icono (facebook y twitter).*/
+#texto a.icon img:hover {
 	transform: scale(1.3);
+}
+/*Dar formato al enlace para que parezca un botón */
+#texto .imprimir {
+	text-decoration: none;
+	background-color: #EEE;
+	color: #333;
+	padding: 4px 6px;
+	border: 1px solid #CCC;
+}
+/* Efecto de botón cuando se pulsa el enlace de Imprimir evento*/
+#texto .imprimir:active {
+    vertical-align: top;
+    padding: 8px;
+}
+/* Centra el botón en la página */
+.centrame{
+	text-align: center;
+	margin-bottom: 1%;
 }
