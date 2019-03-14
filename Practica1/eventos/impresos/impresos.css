@@ -14,3 +14,14 @@
 	float: right;
 }
 
+#cabecera div {
+	display:none;
+}
+#menuAux {
+	display:none;
+}
+
+#contenido img, #contenido a, #contenido .externo{
+	display:none;
+}
+

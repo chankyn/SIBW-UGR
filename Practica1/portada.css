@@ -4,29 +4,34 @@
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	
+
 }
 
 #cabecera,#pie {
 	height: 20%;
-	background-color: #f7f7f7;
 	padding: 1% 1% 1% 5%;
+	background-color: #f7f7f7;
 }
 
 #contenido {
 	width: 100%;
 	height: 60%;
 	display:flex;
+	
 }
 #menuAux {
-	width:20%;
+	width:15%;
 	display:inline-block;
 	padding: 1% 1% 1% 7%;
+	border-radius:10%;
+	border:  2px solid #f7f7f7;
+	margin-right: 5%;
 }
-
 #texto {
 	width: 60%;
 	display: inline-block;
+	border:  2px solid #f7f7f7;
+	border-radius: 10%;
 }
 
 /* Tamaño del logotipo de la cabecera y alineación. */
@@ -98,9 +103,11 @@
 #texto img {
 	width: 12em;
 	height: 8em;
+	border-radius: 10%;
 }
 
 /* Efecto visual cuando se pasa el ratón sobre alguna imagen. */
 #texto img:hover {
 	transform: scale(1.3);
 }
+
