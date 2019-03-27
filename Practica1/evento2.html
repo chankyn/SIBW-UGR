@@ -4,9 +4,10 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="css/portada.css">
 		<link rel="stylesheet" type="text/css" href="css/eventos.css">
+		<script type="text/javascript" src="js/eventos.js"></script>  
 		<title></title>
 	</head>
-	<body>
+	<body onload="ocultarComentario()">
 		<div id="principal">
 			<div id="cabecera">
 				<img class="logo" src="imagenes/logo2.png" alt="Logotipo Wanderlust"/>
@@ -22,7 +23,9 @@
 			</div>
 			<div id="contenido">
 				<div id="menuAux">
-					<p>Enlaces de interés</p>
+					<div id="tituloSeccion">
+						<p>Enlaces de interés</p>
+					</div>
 					<a href="https://www.ugr.es" target="_blank">Página Oficial UGR</a>				
 					<a href="https://www.viajeselcorteingles.es/" target="_blank">El corte inglés viajes</a>
 					<a href="https://www.booking.com/" target="_blank">Booking</a>
@@ -34,7 +37,7 @@
 					<h1>Viaje a Ronda</h1>
 					<p>Organizador: <em>Ayuntamiento de Málaga</em></p>
 					<p>Fecha: Fines de semana de Abril 2019</p>
-					<div>
+					<div id="cont">
 						<img src="imagenes/Evento2.jpg" class="der"/>
 						<p>Ronda es un municipio español perteneciente a la comunidad autónoma de Andalucía, situada en el noroeste de la provincia de Málaga, a unos 100 kilómetros de la ciudad de Málaga. Es la cabeza del partido judicial homónimo y la capital de la comarca de la Serranía de Ronda.</p>              
 						<p>La ciudad se asienta sobre una meseta cortada por un profundo tajo excavado por el río Guadalevín, al que asoman los edificios de su centro histórico, lo que confiere a la ciudad una panorámica pintoresca que, unida a la variedad de monumentos que posee, a su entorno natural y a su cercanía a los grandes centros del turismo de masas de la Costa del Sol, ha convertido a Ronda en un centro turístico notable. La cornisa del tajo y el puente que lo salva son la imagen por antonomasia de la ciudad</p>
@@ -42,8 +45,37 @@
 						<p>Lo más sorprendente de Ronda es el Puente Nuevo, que se erige sobre un imponente tajo de más de 100 metros. ¿Te gustaría saber cuándo se construyó? Pues nada menos que en 1793, con lo que te puedes hacer una idea de lo poco que ha cambiado Ronda en estos casi tres siglos. Ronda también es conocida como el lugar de nacimiento de las modernas corridas de toros. El coliseo taurino de la localidad sólo se usa una vez al año, durante su Feria Goyesca, pero alberga también un museo en el que puedes aprender acerca de la historia de esta (controvertida) tradición.</p>
 						<p>Puedes encontrar más información sobre qué hacer en Ronda pulsando <a href="http://www.turismoderonda.es/es/">aquí</a>. </p>
 					</div>
+					<div id="oculto">
+						<div id="tituloSeccion">
+							<p>Comentarios</p>
+						</div>
+						<div id="comentariosArchivados">
+							<div id="nombre">
+								<p>Autor: Alfonso Valdivieso</p>
+							</div>
+							<div id="fecha">
+								<p>Fecha: 16/03/2019 18:32</p>
+							</div>
+							<p>Ronda es el mejor sitio del mundo!.</p>
+							<div id="nombre">
+								<p>Autor: Martín Cano</p>
+							</div>
+							<div id="fecha">
+								<p>Fecha: 16/03/2019 18:32</p>
+							</div>
+							<p>Ronda está sobrevalorada. No la recomiendo</p>
+						</div>
+						<form>
+							<p>Nombre: <input type="text" id="nombreComentario"/> </p>
+							<p>E-mail: <input type="email" id="emailComentario"/> </p>
+							<p>Comentario: </p>
+							<p><textarea id="textoComentario" onkeydown="comprobarPalabrasProhibidas()" contenteditable></textarea></p>
+							<p><input type="button" value="Enviar" onclick="enviarComentario()" /></p>
+						</form>
+					</div>
 					<div class="centrame">
 						<a href="evento2_imprimir.html" alt="Segunda imagen evento2" class="imprimir">Imprimir Evento</a>
+						<input type="button" value="Comentarios" onclick="cambiarVisibilidad()"/>
 					</div>
 				</div>
 			</div>
