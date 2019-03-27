@@ -97,7 +97,6 @@
 /* Alineación de la tabla donde están todos los eventos. */
 #texto div {
 	text-align: center;
-	padding:0;
 }
 
 
@@ -118,3 +117,8 @@
 	transform: scale(1.3);
 }
 
+#tituloSeccion{
+	color: #67b500;
+	font-size: 1.2em;
+	text-decoration: underline;
+}

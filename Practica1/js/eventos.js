@@ -38,22 +38,28 @@ function crearParrafoComentario(){
 }
 
 function crearParrafoAutor(){
+  var div = document.createElement("div");
+  div.id = 'nombre';
   var parrafo = document.createElement("p");
   var t = document.getElementById("nombreComentario").value;
   var t2 = "Autor: "+t;
   var textoComentario = document.createTextNode(t2);
 
+  div.appendChild(parrafo);
   parrafo.appendChild(textoComentario); 
-  return parrafo;
+  return div;
 }
 
 function crearParrafoFecha(){
+  var div = document.createElement("div");
+  div.id = 'fecha';
   var parrafo = document.createElement("p");
   var t = "Fecha: "+ getFecha();
   var textoComentario = document.createTextNode(t);
-
+  
+  div.appendChild(parrafo);
   parrafo.appendChild(textoComentario); 
-  return parrafo;
+  return div;
 }
 function validarEmail(){
   var email = document.getElementById("emailComentario").value;

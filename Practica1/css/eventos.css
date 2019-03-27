@@ -58,11 +58,20 @@
 	display:inline-block!important;
 	float:left;
 }
-#oculto{
+#oculto  {
 	width: 35%!important;
-	float:left;
+	float: left;
 	margin: 2%;
-	align-items: center;
+	margin-right: 0%;
+	padding-left: 2%;
+	border:  2px solid #f7f7f7;
+	border-radius: 10%;
 }
 
+#nombre {
+	font-weight: bold;
+}
 
+#fecha {
+	font-style: italic;
+}
