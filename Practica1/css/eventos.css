@@ -51,3 +51,18 @@
 	text-align: center;
 	margin-bottom: 1%;
 }
+
+
+.cont {
+	width: 60%!important;
+	display:inline-block!important;
+	float:left;
+}
+#oculto{
+	width: 35%!important;
+	float:left;
+	margin: 2%;
+	align-items: center;
+}
+
+

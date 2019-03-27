@@ -4,9 +4,10 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="css/portada.css">
 		<link rel="stylesheet" type="text/css" href="css/eventos.css">
+		<script type="text/javascript" src="js/eventos.js"></script>  
 		<title></title>
 	</head>
-	<body>
+	<body onload="ocultarComentario()">
 		<div id="principal">
 			<div id="cabecera">
 				<img class="logo" src="imagenes/logo2.png" alt="Logotipo Wanderlust"/>
@@ -33,17 +34,36 @@
                     <a class="icon" href="https://twitter.com"><img src="imagenes/twitterIcon.png" alt="Icono Twitter"/></a>
                     <h1>Viaje a Álcala la Real</h1>
                     <p>Organizador: <em>Wanderlust Viajes</em></p>
-                    <p>Fecha: Sábados y Domingos de Marzo a Junio 2019</p>
-                    <div>
+					<p>Fecha: Sábados y Domingos de Marzo a Junio 2019</p>
+                    <div id="cont">
 						<img src="imagenes/Evento1.jpg"  alt="Primera imagen evento1" class="der"/>
                         <p>Alcalá la Real es un municipio y ciudad de España, en la provincia de Jaén, comunidad autónoma de Andalucía. Es cabecera de la comarca de la Sierra Sur y se ubica en el extremo suroeste de la provincia, limitando con las provincias de Granada y Córdoba.</p>              
                         <p>Alcalá la Real se ubica en una zona estratégica que comunica el valle del Guadalquivir (a través del río Guadajoz) con las áreas de vega granadinas, a través de los ríos Frailes y Velillos. Su posición estratégica, no solo sobre el territorio, sino en la misma ubicación de la ciudad (sobre el cerro de La Mota), le confiere una importancia fundamental en cuanto a las vías de comunicación a lo largo de la historia, lo cual viene a confirmar su importancia cuando esta área se convierte en zona de frontera durante la Edad Media con el Reino de Granada. </p>
                         <img src="imagenes/Evento1_turismo1.jpg" alt="Segunda imagen evento1" class="der"/>
                         <p>En este municipio podemos destacar el conjunto monumental de la Fortaleza de la Mota, dentro del conjunto monumental de la Fortaleza de la Mota existen varios espacios tematizados donde se explica el concepto de frontera, los modos de vida de sus habitantes, la funcionalidad de los distintos espacios y la articulación de la Fortaleza con el territorio circundante. Horarios: Del 15 de octubre al 31 de marzo. L-D de 10.00 a 17.30hrs. Sábados hasta las 18.00hrs. Del 1 de abril al 14 de octubre. L-D de 10.30 a 19.30 hrs. Cerrado: 25 diciembre, 1 y 6 de Enero. Horario especial: 24, 31 de diciembre y 5 de enero de 10.00 a 14.00 hrs.</p>
                         <p>Puedes encontrar más información sobre qué hacer en Álcala la Real pulsando <a href="http://turismo.alcalalareal.es/">aquí</a>. </p>
-                    </div>
+					</div>
+					<div id="oculto">
+						<div id="comentariosArchivados">
+							<p>Autor: Manolo Pérez</p>
+							<p>Fecha: 16/03/2019 18:32</p>
+							<p>Alcala es el mejor sitio del mundo!.</p>
+							<p>Autor: Martina Cano</p>
+							<p>Fecha: 16/03/2019 18:32</p>
+							<p>La calidad de la comida muy mala. No repetiría.</p>
+						</div>
+						<form>
+							<p>Nombre: <input type="text" id="nombreComentario"/> </p>
+							<p>E-mail: <input type="email" id="emailComentario"/> </p>
+							<p>Comentario: </p>
+							<p><textarea id="textoComentario" onkeydown="comprobarPalabrasProhibidas()" contenteditable></textarea></p>
+							<p><input type="button" value="Enviar" onclick="enviarComentario()" /></p>
+						</form>
+					</div>
                     <div class="centrame">
-                        <a href="evento1_imprimir.html" class="imprimir">Imprimir Evento</a>
+						<a href="evento1_imprimir.html" class="imprimir">Imprimir Evento</a>
+					<input type="button" value="Comentarios" onclick="cambiarVisibilidad()"/>
+						
                     </div>
                 </div>
 			</div>
