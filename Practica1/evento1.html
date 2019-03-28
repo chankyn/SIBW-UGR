@@ -50,28 +50,34 @@
 							<p>Comentarios</p>
 						</div>
 						<div id="comentariosArchivados">
-							<div id="nombre">
-								<p>Autor: Manolo Pérez</p>
+							<div>
+								<p class="nombre">Autor: Manolo Pérez</p>
+								<p class="estrellas">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
+								<p class="fecha">Fecha: 16/03/2019 18:32</p>
+								<p>Alcalá es el mejor sitio del mundo!.</p>
 							</div>
-							<div id="fecha">
-								<p>Fecha: 16/03/2019 18:32</p>
+							<div>
+								<p class="nombre"> Autor: Martina Cano</p>
+								<p class="estrellas">&#9733;</p>
+								<p class="fecha">Fecha: 16/03/2019 18:32</p>
+								<p>La calidad de la comida muy mala. No repetiría.</p>
 							</div>
-							<p>Alcalá es el mejor sitio del mundo!.</p>
-							<div id="nombre">
-								<p>Autor: Martina Cano</p>
-							</div>
-							<div id="fecha">
-								<p>Fecha: 16/03/2019 18:32</p>
-							</div>
-							<p>La calidad de la comida muy mala. No repetiría.</p>
 						</div>
 						<form>
 							<p>Nombre: <input type="text" id="nombreComentario"/> </p>
 							<p>E-mail: <input type="email" id="emailComentario"/> </p>
 							<p>Comentario: </p>
 							<p><textarea id="textoComentario" onkeydown="comprobarPalabrasProhibidas()" contenteditable></textarea></p>
+							<div class="ec-stars-wrapper">
+								<a href="#estrellas=1"" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+								<a href="#estrellas=2"" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+								<a href="#estrellas=3"" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+								<a href="#estrellas=4"" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+								<a href="#estrellas=5"" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+							</div>
 							<p><input type="button" value="Enviar" onclick="enviarComentario()" /></p>
 						</form>
+						
 					</div>
                     <div class="centrame">
 						<a href="evento1_imprimir.html" class="imprimir">Imprimir Evento</a>

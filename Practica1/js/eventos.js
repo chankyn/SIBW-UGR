@@ -29,37 +29,36 @@ function getFecha(){
 }
 
 function crearParrafoComentario(){
+
   var parrafo = document.createElement("p");
   var t = document.getElementById("textoComentario").value;
   var textoComentario = document.createTextNode(t);
-
+  
   parrafo.appendChild(textoComentario);
   return parrafo; 
 }
 
 function crearParrafoAutor(){
-  var div = document.createElement("div");
-  div.id = 'nombre';
   var parrafo = document.createElement("p");
+  parrafo.classList.add("nombre");
+
   var t = document.getElementById("nombreComentario").value;
   var t2 = "Autor: "+t;
   var textoComentario = document.createTextNode(t2);
 
-  div.appendChild(parrafo);
   parrafo.appendChild(textoComentario); 
-  return div;
+  return parrafo;
 }
 
 function crearParrafoFecha(){
-  var div = document.createElement("div");
-  div.id = 'fecha';
+  
   var parrafo = document.createElement("p");
+  parrafo.classList.add("fecha");
   var t = "Fecha: "+ getFecha();
   var textoComentario = document.createTextNode(t);
   
-  div.appendChild(parrafo);
   parrafo.appendChild(textoComentario); 
-  return div;
+  return parrafo;
 }
 function validarEmail(){
   var email = document.getElementById("emailComentario").value;
@@ -97,9 +96,13 @@ function comprobarCamposComentario(){
 function enviarComentario() {
   if (comprobarCamposComentario()){
     var contenedor = document.getElementById("comentariosArchivados");
-    contenedor.appendChild(crearParrafoAutor());
-    contenedor.appendChild(crearParrafoFecha());
-    contenedor.appendChild(crearParrafoComentario());
+    var div = document.createElement("div");
+    div.appendChild(crearParrafoAutor());
+    div.appendChild(crearEstrellasValoracion());
+    div.appendChild(crearParrafoFecha());
+    div.appendChild(crearParrafoComentario());
+
+    contenedor.appendChild(div);
   }else
     alert("Introduce todos los datos para enviar el comentario.");
 
@@ -111,13 +114,57 @@ function ocultarComentario() {
 }
 
 function comprobarPalabrasProhibidas(){
-  var prohibidas = [/hola/gi,/adios/gi,/prueba/gi,/prueba2/gi];
-  var cambio = ['****','*****','******','*******'];
+  var prohibidas = ["hola","adios","prueba","prueba2","prueba3","prueba4"];
   var texto =  document.getElementById("textoComentario").value;
+
   for(var i =0; i < prohibidas.length; i++){
-    
-    texto = texto.replace(prohibidas[i], cambio[i]);
+    var palabra = prohibidas[i];
+    var asteriscos = "";
+    for (var j = 0; j < palabra.length; j++ )
+      asteriscos += "*";
+    texto = texto.replace(prohibidas[i], asteriscos);
   }
+
   document.getElementById("textoComentario").value = texto;
+}
+
+
+function crearEstrellasValoracion(){
+  var nEstrellas = getVariableURL('estrellas');
+  if ( nEstrellas > 0 ){
+    var texto ="";
+    for (var i = 0; i < nEstrellas; i++)
+      texto += '\u2605' ;
+
+    var parrafo = document.createElement("p");
+    parrafo.classList.add("estrellas");
+    var textoComentario = document.createTextNode(texto);
+
+    parrafo.appendChild(textoComentario); 
+    return parrafo;
+  }else{
+    var texto ='\u2605';
+    
+    var parrafo = document.createElement("p");
+    parrafo.classList.add("estrellas");
+    var textoComentario = document.createTextNode(texto);
+
+    parrafo.appendChild(textoComentario); 
+    return parrafo;
+  }
+}
+
+function getVariableURL(variable){
+  var url = window.location.href;
+  var vars = url.split("#");
+  vars.shift();
+
+  for (var i = 0;i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    if(pair[0] == variable){
+      return pair[1];
+    }
+  }
+  return 0;
 }
   
