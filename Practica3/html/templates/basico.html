@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		{% block css %}
+		{% endblock %}
+		<meta name="keywords" content="viajes,ofertas viajes">
+		<meta name="author" content="Miguel Ángel Hinojosa,Adrián Izquierdo Pozo">
+		<title>Wanderlust Viajes</title>
+	</head>
+	<body onload="ocultarComentario()" >
+		<div id="principal">
+			<header id="cabecera">
+				<img class="logo" src="imagenes/logo2.png" alt="Logotipo Wanderlust"/>
+				<div>
+					<h1>Wanderlust Viajes</h1>
+					<nav>
+						  <!-- <li><a href="index.php">Inicio</a></li>
+						  <li><a href="#ugr">UGR</a></li>
+						  <li><a href="#menu2">Menu2</a></li>
+						  <li><a href="#menu3">Menu3</a></li> -->
+						  {% block menu_principal %}
+							{% endblock %}
+					</nav>
+				</div>
+			</header>
+			<main id="contenido">
+				<div id="menuAux">
+					<div id="tituloSeccion">
+						<p>Enlaces de interés</p>
+					</div>
+					<a href="https://www.ugr.es" target="_blank">Página Oficial UGR</a>				
+					<a href="https://www.viajeselcorteingles.es/" target="_blank">El corte inglés viajes</a>
+					<a href="https://www.booking.com/" target="_blank">Booking</a>
+					<a href="https://www.rumbo.es/" target="_blank">Rumbo</a>
+				</div>
+				<div id="texto">
+						{% block principal %}
+						{% endblock %}
+				</div>
+			</main>
+			<footer id="pie">
+				<p>@ 2019 - Miguel Ángel Hinojosa Castro & Adrián Izquierdo Pozo</p>
+            </footer>
+		</div>
+	</body>
+</html>

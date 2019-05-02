@@ -114,7 +114,7 @@ function ocultarComentario() {
 }
 
 function comprobarPalabrasProhibidas(){
-  var prohibidas = ["hola","adios","prueba","prueba2","prueba3","prueba4"];
+  var prohibidas = ["hola","adios","prueba","inutil","manolo","pepe"];
   var texto =  document.getElementById("textoComentario").value;
 
   for(var i =0; i < prohibidas.length; i++){

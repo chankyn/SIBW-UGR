@@ -1,0 +1,34 @@
+{% extends "basico.html" %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="css/portada.css">
+	<script type="text/javascript" src="js/jquery-3.4.0.min.js"></script> 
+	<script type="text/javascript" src="js/portada.js"></script>
+{% endblock %}
+
+{% block menu_principal %}
+	<ul>
+	{% for key,value in menu %}
+		{% if value.id_padre == 0 %}
+			<li><a href={{ value.enlace }}>{{ value.nombre }}</a>
+				<ul class="hijo">
+				{% for key,value2 in menu %}
+					{% if value.id == value2.id_padre %}
+						<li><a href={{ value2.enlace }}>{{ value2.nombre }}</a></li>
+					{% endif %}
+				{% endfor %}
+				</ul>
+			</li>
+		{% endif %}
+
+	{% endfor %}
+	</ul>
+{% endblock %}
+
+{% block principal%}
+	{% for key,value in eventos %}
+	<div>
+		<a href={{ "eventos.php?id=" ~ value.id  }} ><img src={{ value.ruta_imagen }} alt="Evento1: Alcalá la Real"/></a>
+		<p>{{ value.titulo }}</p>
+	</div>
+	{% endfor %}
+{% endblock %}

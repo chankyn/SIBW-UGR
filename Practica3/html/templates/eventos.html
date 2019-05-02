@@ -1,0 +1,110 @@
+{% extends "portada.html" %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="css/portada.css" />
+	<link rel="stylesheet" type="text/css" href="css/eventos.css"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/lightslider.min.css" />       
+	<script type="text/javascript" src="js/jquery-3.4.0.min.js"></script> 
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/lightslider.min.js"></script>
+	<script type="text/javascript" src="js/eventos.js"></script>
+{% endblock %}
+{% block principal%}
+	{% block redes %}
+	
+	<ul id="lightSlider" >
+		{% for key,value in galeria %}
+		<li><img width="20% "height="20%" src={{ value }}></li>
+		{% endfor %}
+	</ul>	
+	<div id="mensajeRedes" title="Compartir en Redes Sociales">
+		<p>{{ titulo }}</p>
+		<p>Vía @Wanderlust</p>
+		<div>
+			<img src={{ ruta_imagen }} width="200px" alt="Imagen redes sociales"/>
+		</div>
+	</div>
+	<div id="mensajeErrorComentario" title="Error al añadir comentario">
+		<p>Se ha producido un error al añadir un nuevo comentario.</p>
+		<p>El comentario no ha sido añadido. Vuelva a intentarlo.</p>
+	</div>
+	<div id="mensajeErrorID" title="Error de carga de evento">
+		<p>Se ha producido un error al cargar el evento seleccionado.</p>
+		<p>Se ha redirigido al primer evento.</p>
+	</div>
+	<a class="icon" name="Facebook" ><img src="imagenes/facebookIcon.png" alt="Icono Facebook"/></a>
+	<a class="icon" name="Twitter" ><img src="imagenes/twitterIcon.png" alt="Icono Twitter"/></a>
+	{% endblock %}
+	{% block evento %}
+	
+	<h1  id="pepe">Viaje a {{ titulo }}</h1>
+	<p>Organizador: <em>Wanderlust Viajes</em></p>
+	<p>Fecha: {{ fecha }}</p>
+	<div id="cont">
+		<img src={{  ruta_imagen }}  alt="Primera imagen evento1" class="der"/>
+		<p>{{ descripcion }}</p>              
+		<img src={{  ruta_imagen_secundaria }} alt="Segunda imagen evento1" class="der"/>
+		<p>{{ descripcion_avanzada }}</p>
+		<div id="videos">
+			{% if video is not empty %}
+			<video  width="400" controls>
+				<source class="video" src={{ video }} type="video/mp4">
+				Your browser does not support HTML5 video.
+			</video>
+			{% endif %}
+		</div>
+	</div>
+	
+	{% endblock %}
+	{% block comentarios %}
+	<div id="oculto">
+		<div id="tituloSeccion">
+			<p>Comentarios</p>
+		</div>
+		<div id="comentariosArchivados">
+			{% for key,value in comentarios %}
+			<div>
+				<p class="nombre">Autor: {{ value.autor }}</p>
+				<p class="estrellas">
+					{% for i in 1..value.valoracion %}
+						&#9733;
+					{% endfor %}
+				</p>
+				<p class="fecha">Fecha: {{ value.fecha }}</p>
+				<p>{{ value.comentario }}</p>
+			</div>
+			{% endfor %}
+		</div>
+		<form name="comentario" action="procesar.php" method="post">
+			<p>Nombre: <input type="text" name="nombre" id="nombreComentario"/> </p>
+			<p>E-mail: <input type="email" name="email" id="emailComentario"/> </p>
+			<p>Comentario: </p>
+			<p><textarea id="textoComentario" name="texto" onkeydown="comprobarPalabrasProhibidas()" contenteditable></textarea></p>
+			<div class="ec-stars-wrapper">
+				<a href="#estrellas=1"" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+				<a href="#estrellas=2"" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+				<a href="#estrellas=3"" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+				<a href="#estrellas=4"" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+				<a href="#estrellas=5"" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+			</div>
+			<p><input type="button" id="enviarComentario" value="Enviar"  /></p>
+			<input type="text" name="estrellas" hidden="true" value="1" id="estrellas"/>
+			<input type="text" name="idEvento" hidden="true" id="idEvento"/>
+		</form>
+		
+	</div>
+	{% endblock %}
+	
+	{% block funcionalidad %}
+	<div class="cursiva">
+		<p>Fecha de creación: {{ fecha_creacion }}</p>
+		<p>Fecha de modificación: {{ fecha_modificacion }}</p>
+	</div>
+
+	<div class="centrame">
+		<a href={{ "eventos_imprimir.php?id=" ~ id  }} class="imprimir">Imprimir Evento</a>
+		<input type="button" id="botonAbrirComentario" value="Comentarios" onclick="cambiarVisibilidad()"/>
+	</div>
+	
+	{% endblock %}
+{% endblock %}

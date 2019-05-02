@@ -1,0 +1,21 @@
+
+#principal {
+	margin: auto;
+	padding: 0;
+	width: 80%;
+	height: 80%;
+	font-size: 1.5em;
+}
+
+/* Tamaño del logotipo de la cabecera y alineación. */
+#cabecera .logo {
+	width: 18%;
+	height: 18%;
+	float: left;
+}
+
+
+#contenido img, #contenido a, #contenido .externo{
+	display:none;
+}
+
