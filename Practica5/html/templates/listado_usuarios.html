@@ -1,0 +1,46 @@
+{% extends "portada.html" %}
+
+{% block menu_principal %}
+	{{ parent() }}
+{% endblock %}
+
+{% block principal %}
+	<p class="tituloSeccion">Listado de usuarios</p>
+	{% if usuarios is empty %}
+		<p>No se han encontrado usuarios.</p>
+	{% endif %}
+	<div class="row">
+		<div class="colum"><p>Usuario</p></div>
+		<div class="colum"><p>Email</p></div>
+		<div class="colum"><p>Registado</p></div>
+		<div class="colum"><p>Moderador</p></div>
+		<div class="colum"><p>Gestor</p></div>
+		<div class="colum"><p>Superusuario</p></div>
+		<div class="colum"><p>Acción</p></div>
+	</div>
+	{% for key,value in usuarios %}
+	<div class="row">
+		<div class="colum">
+			<p>{{ value.nombre }}</p>
+		</div>
+		<div class="colum">
+			<p>{{ value.email }}</p>
+		</div>
+		<div class="colum">
+			<p><input type="radio" class="privilegios{{value.id_usuario}}" name="{{value.id_usuario}}" value="1" {% if value.id_privilegio == 1 %}checked{% endif %}></p>
+		</div>
+		<div class="colum">
+			<p><input type="radio" class="privilegios{{value.id_usuario}}" name="{{value.id_usuario}}" value="2" {% if value.id_privilegio == 2 %}checked{% endif %}></p>
+		</div>
+		<div class="colum">
+			<p><input type="radio" class="privilegios{{value.id_usuario}}" name="{{value.id_usuario}}" value="3" {% if value.id_privilegio == 3 %}checked{% endif %}></p>
+		</div>
+		<div class="colum">
+			<p><input type="radio" class="privilegios{{value.id_usuario}}" name="{{value.id_usuario}}" value="4" {% if value.id_privilegio == 4 %}checked{% endif %}></p>
+		</div>
+		<div class="colum">
+			<p><input type="button" class="submitCambiarRol" name="{{ value.id_usuario }}" value="Cambiar rol"></p>
+		</div>
+	</div>
+	{% endfor %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "portada.html" %}
+
+{% block menu_principal %}
+	{{ parent() }}
+{% endblock %}
+
+{% block principal %}
+<p class="tituloSeccion">Listado de comentarios</p>
+	<ul>
+	{% if comentarios is empty %}
+		<p>No se han encontrado comentarios.</p>
+	{% endif %}
+	{% for key,value in comentarios %}
+		<li>
+			<p>ID comentario: {{ value.id_comentario }}<span name={{ value.id_comentario }} class="ui-icon ui-icon-pencil moderadores editComment" title="Pulsa para editar este comentario"></span><span name={{ value.id_comentario }} class="ui-icon ui-icon-closethick moderadores deleteComment" title="Pulsa para eliminar este comentario"></span></p>
+			
+			<ul>
+				<li><p>Nombre del usuario: {{ value.autor }} </p></li>
+				<li><p>Email del usuario: {{ value.email }} </p></li>
+				<li><p>Valoración del usuario: {{ value.valoracion }} </p></li>
+				<li><p>Fecha: {{ value.fecha }} </p></li>
+				<li><p>Comentario: <span  class="textoEditableComentario{{ value.id_comentario }}">{{ value.comentario }}</span></p></li>
+				<li><p>ID evento asociado: {{ value.id_evento }} </p></li>
+			</ul>
+		</li>
+	
+	{% endfor %}
+	</ul>
+{% endblock %}

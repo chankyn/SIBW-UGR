@@ -1,0 +1,14 @@
+{% extends "eventos.html" %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="css/impresos.css">
+	<script type="text/javascript" src="js/jquery-3.4.0.min.js"></script> 
+	<script type="text/javascript" src="js/imprimir.js"></script>
+{% endblock %}
+{% block redes %} {% endblock %}
+
+{% block evento%}
+	{{ parent() }}
+{% endblock %}
+
+{% block comentarios %} {% endblock %}
+{% block funcionalidad %} {% endblock %}

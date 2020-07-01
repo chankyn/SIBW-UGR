@@ -1,0 +1,19 @@
+{% extends "portada.html" %}
+
+{% block menu_principal %}
+	{{ parent() }}
+{% endblock %}
+
+{% block principal %}
+<form name="nuevoEvento" method="post" id="formNuevoEvento">
+	<ul class="perfil">
+		<li><span>Nombre de evento:</span> <input type="text" name="titulo"/></li>
+		<li><span>Fecha:</span> <input type="text" name="fecha" id="selFecha"/></li>
+		<li><span>Descripcion:</span> <input type="text" name="descripcion"/></li>
+		<li><span>Descripcion avanzada:</span> <input type="text" name="descripcion_avanzada"/></li>
+		<li><span>Ruta imagen principal:</span> <input type="text" name="ruta_imagen"/></li>
+		<li><span>Ruta imagen secundaria:</span> <input type="text" name="ruta_imagen_secundaria"/></li>
+		<p><input type="button" value="Crear evento" id="btnNuevoEvento"/></p>
+	</ul>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "portada.html" %}
+
+{% block menu_principal %}
+	{{ parent() }}
+{% endblock %}
+
+{% block principal %}
+<p class="tituloSeccion">Listado de eventos</p>
+	<ul>
+	{% if eventos is empty %}
+	<p>No se han encontrado eventos.</p>
+	{% endif %}
+	{% for key,value in eventos %}
+		
+		<li><p>Nombre del evento: <a href="eventos.php?id={{ value.id }}">{{ value.titulo }}</a>{% if value.publicado == 0 %} (No publicado) <input type="button" class="publicarEvento" name="{{value.id}}" value="Publicar"/>{% else %}   <input type="button" name="{{value.id}}" class="despublicarEvento" value="Despublicar"/>{% endif %}</p></li>
+		<ul>
+			<li><p>Fecha del evento: {{ value.fecha }}</p></li>
+		</ul>
+	
+	{% endfor %}
+	</ul>
+{% endblock %}

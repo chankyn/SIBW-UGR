@@ -1,0 +1,25 @@
+{% extends "portada.html" %}
+
+{% block menu_principal %}
+	{{ parent() }}
+{% endblock %}
+
+{% block principal %}
+<form name="perfil" action="procesarCambiosPerfil.php" method="post">
+	<ul class="perfil">
+		<li><span>Nombre de usuario:</span> {{ nombreUsuario }}</li>
+		<li><span>Email asociado:</span> {{ email }}</li>
+		<li><span>Cambiar contraseña:</span> </li>
+		<ul>
+			<li>Contraseña actual: <input name="passwordActual" type="password"/></li>
+			<li>Nueva contraseña: <input name="nuevaPassword" type="password"/></li>
+			<li>Repetir nueva contraseña: <input name="nuevaPasswordR" type="password"/></li>
+		</ul>
+		<li><span>Primer apellido:</span> <input type="text" name="primer_apellido" value="{{ primer_apellido }}"></li>
+		<li><span>Segundo apellido:</span> <input type="text" name="segundo_apellido" value="{{ segundo_apellido }}"></li>
+		<li><span>Dirección:</span> <input type="text" name="direccion" value="{{ direccion }}"></li>
+		<input type="text" name="id_usuario" hidden="true" id="id_usuario"/>
+		<p><input type="button" id="enviarCambios" value="Enviar" /></p>
+	</ul>
+</form>
+{% endblock %}

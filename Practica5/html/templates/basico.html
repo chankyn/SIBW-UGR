@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		
+		{% block css %}
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+		{% endblock %}
+		{% block js %}
+		<script type="text/javascript" src="js/jquery-3.4.0.min.js"></script> 
+		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/usuarios.js"></script>
+		{% endblock %}
+		
+		<meta name="keywords" content="viajes,ofertas viajes">
+		<meta name="author" content="Miguel Ángel Hinojosa,Adrián Izquierdo Pozo">
+		<title>Wanderlust Viajes</title>
+	</head>
+	<body onload="ocultarComentario()" >
+		<div id="principal">
+			<header id="cabecera">
+				<img class="logo" src="imagenes/logo2.png" alt="Logotipo Wanderlust"/>
+				<div>
+					<h1>Wanderlust Viajes</h1>
+					<nav>
+						  <!-- <li><a href="index.php">Inicio</a></li>
+						  <li><a href="#ugr">UGR</a></li>
+						  <li><a href="#menu2">Menu2</a></li>
+						  <li><a href="#menu3">Menu3</a></li> -->
+						  {% block menu_principal %}
+							{% endblock %}
+					</nav>
+				</div>
+			</header>
+			
+			<main id="contenido">
+				<div id="menuAux">
+					<div id="divInicioSesion">
+						<span class="tituloSeccion">Iniciar Sesión</span>
+						<form name="login" action="login.php" method="post">
+							<p>Nombre: <input type="text" name="nombreUser" id="inSUser"/> </p>
+							<p>Contraseña: <input type="password" name="passwordUser" id="inSPass"/> </p>
+							<input type="text" name="location" hidden="true" id="locationI"/>
+							<p><input type="button" id="submitIniciarSesion" value="Enviar"  /></p>
+							<p>¿Aún no dispones de cuenta?<a  id="enlaceRegistro">Regístrate</a></p>
+						</form>
+					</div>
+					<div id="divRegistroUsuario">
+						<span class="tituloSeccion">Registro de Usuario</span>
+						<form name="register" action="register.php" method="post">
+							<p>Nombre: <input type="text" name="reUser" id="reUser"/> </p>
+							<p>Contraseña: <input type="password" name="rePassword" id="rePass"/> </p>
+							<p>E-mail: <input type="email" name="reMail" id="reMail"/> </p>
+							<input type="text" name="location" hidden="true" id="locationR"/>
+							<p><input type="button" id="submitRegistro" value="Enviar"  /></p>
+							<p>¿Ya dispones de una cuenta?<a  id="enlaceInicioSesion">Inicia Sesión</a></p>
+						</form>
+					</div>
+					<div id="divSesionIniciada">
+						<span class="tituloSeccion">Cerrar Sesión</span>
+						<form name="logout" action="logout.php" method="post">
+							<p>Ha iniciado sesión con el usuario <span id="usuarioSesion"></span></p>
+							<a id="enlacePerfilUsuario">Ver perfil de usuario</a>
+							<a class="moderadores" id="enlaceListadoComentarios">Listado de comentarios</a>
+							<p class="moderadores"><input id="busquedaComment" type="text" placeholder="Buscar comentario..."/><span id="btnBusquedaComment" class="ui-icon ui-icon-search moderadores" title="Pulsa para buscar un comentario"></span></p> 
+							<a class="gestores" id="enlaceNuevoEvento">Añadir un evento</a>
+							<a class="gestores" id="enlaceListadoEventos" >Listado todos los eventos</a>
+							<p class="gestores"><input id="busqueda" type="text" placeholder="Buscar evento..."/><span id="btnBusqueda" class="ui-icon ui-icon-search gestores" title="Pulsa para buscar un evento"></span></p> 
+							<input type="text" name="usuario" hidden="true" id="userSession"/>
+							<a class="super" id="enlaceListadoUsuarios">Cambiar roles de usuario</a>
+							<p><input type="button" id="submitLogout" value="Cerrar sesión"  /></p>
+						</form>
+					</div>
+					<div class="tituloSeccion">
+						<p>Enlaces de interés</p>
+					</div>
+					<a href="https://www.ugr.es" target="_blank">Página Oficial UGR</a>				
+					<a href="https://www.viajeselcorteingles.es/" target="_blank">El corte inglés viajes</a>
+					<a href="https://www.booking.com/" target="_blank">Booking</a>
+					<a href="https://www.rumbo.es/" target="_blank">Rumbo</a>
+				</div>
+				<div id="texto">
+						{% block principal %}
+						{% endblock %}
+				</div>
+			</main>
+			<footer id="pie">
+				<p>@ 2019 - Miguel Ángel Hinojosa Castro & Adrián Izquierdo Pozo </p>
+			</footer>
+			<div id="mensajeErrorRegistro" title="Introduzca valores válidos">
+					<p>Se ha producido un error al registrar un nuevo usuario.</p>
+					<p>Algunos datos introducidos no son válidos. Vuelva a intentarlo.</p>
+				</div>
+				<div id="mensajeErrorRegistro1" title="Usuario erróneo">
+					<p>Se ha producido un error al registrar un nuevo usuario.</p>
+					<p>El usuario introducido está en uso. Vuelva a intentarlo.</p>
+				</div>
+				<div id="mensajeErrorRegistro2" title="Correo erróneo">
+					<p>Se ha producido un error al registrar un nuevo usuario.</p>
+					<p>El email introducido está en uso. Vuelva a intentarlo.</p>
+				</div>
+				<div id="mensajeRegistroSatisfactorio" title="Registro completado">
+					<p>Se realizado el registro con los datos solicitados.</p>
+				</div>
+				<div id="mensajeLoginIncorrecto" title="Error al iniciar Sesión">
+					<p>Se ha producido un error al intentar iniciar sesión con los datos introducidos.</p>
+					<p>El usuario no existe o no coincide la contraseña. Vuelva a intentarlo.</p>
+				</div>
+				<div id="mensajeLoginCorrecto" title="Inicio de sesión correcto">
+					<p>Datos de inicio de sesión correctos.</p>
+					<p>Usted está logueado en el sistema.</p>
+				</div>
+				<div id="mensajePrivilegiosError" title="Permisos insufientes">
+					<p>No tiene permisos suficientes para ejecutar la acción solicitada.</p>
+					<p>Póngase en contacto con un administrador.</p>
+				</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+
+#texto p{
+	width: 70%;
+	text-align:left;
+}
+
+#texto div{
+	width:100%;
+	display:inline-block;
+}
+#texto img {
+	width: 12em;
+	height: 8em;
+	display:inline-block;
+}
+#texto img.izq {
+	float: left;
+}
+#texto img.der {
+	float: right;
+}
+#texto h1 {
+	font-size: 1.5em;
+}
+
+/*Dar formato al enlace para que parezca un botón */
+#texto .imprimir {
+	text-decoration: none;
+	background-color: #EEE;
+	color: #333;
+	padding: 4px 6px;
+	border: 1px solid #CCC;
+}
+/* Efecto de botón cuando se pulsa el enlace de Imprimir evento*/
+#texto .imprimir:active {
+    vertical-align: top;
+    padding: 8px;
+}
+/* Centra el botón en la página */
+.centrame{
+	text-align: center;
+	margin-bottom: 1%;
+}
+
+
+.cont {
+	width: 60%!important;
+	display:inline-block!important;
+	float:left;
+}
+#oculto  {
+	width: 35%!important;
+	float: left;
+	margin: 2%;
+	margin-right: 0%;
+	padding-left: 2%;
+	border:  2px solid #f7f7f7;
+	border-radius: 10%;
+}
+
+.nombre {
+	font-weight: bold;
+}
+.estrellas{
+	color: #E5BE01;
+}
+.fecha {
+	font-style: italic;
+}
+
+.ec-stars-wrapper {
+	
+	font-size: 0;
+	display: inline-block;
+}
+.ec-stars-wrapper a {
+	text-decoration: none;
+	display: inline-block;
+	/* Volver a dar tamaño al texto */
+	font-size: 32px;
+	font-size: 2rem;
+	color: #888;
+}
+
+.ec-stars-wrapper:hover a {
+	color: #E5BE01;
+}
+
+.ec-stars-wrapper > a:hover ~ a {
+	color: #888;
+}
+
+#dialog div {
+	width:50%!important;
+	height: 50%!important;
+}
+#dialog img{
+	width: 12em;
+	height: 8em;
+	border-radius: 10%;
+}

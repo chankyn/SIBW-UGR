@@ -1,0 +1,192 @@
+{% extends "portada.html" %}
+{% block css %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="css/eventos.css"/>
+	<link rel="stylesheet" type="text/css" href="css/lightslider.min.css" />
+{% endblock %}   
+{% block js %} 
+	{{ parent() }}
+	<script type="text/javascript" src="js/lightslider.min.js"></script>
+	<script type="text/javascript" src="js/eventos.js"></script>
+{% endblock %}
+{% block principal%}
+	{% block redes %}
+	
+	<ul id="lightSlider" >
+		{% for key,value in galeria %}
+		<li><img width="20% "height="20%" src={{ value }}></li>
+		{% endfor %}
+	</ul>	
+	<div id="mensajeRedes" title="Compartir en Redes Sociales">
+		<p>{{ titulo }}</p>
+		<p>Vía @Wanderlust</p>
+		<div>
+			<img src={{ ruta_imagen }} width="200px" alt="Imagen redes sociales"/>
+		</div>
+	</div>
+	<div id="mensajeErrorComentario" title="Error al añadir comentario">
+		<p>Se ha producido un error al añadir un nuevo comentario.</p>
+		<p>El comentario no ha sido añadido. Vuelva a intentarlo.</p>
+	</div>
+	<div id="mensajeErrorID" title="Error de carga de evento">
+		<p>Se ha producido un error al cargar el evento seleccionado.</p>
+		<p>Se ha redirigido al primer evento.</p>
+	</div>
+	<a class="icon" name="Facebook" ><img src="imagenes/facebookIcon.png" alt="Icono Facebook"/></a>
+	<a class="icon" name="Twitter" ><img src="imagenes/twitterIcon.png" alt="Icono Twitter"/></a>
+	{% endblock %}
+	{% block evento %}
+	<h1 >Viaje a <span class="editable">{{ titulo }}</span></h1>
+	<div class="gestores">
+		<span id="anadirEtiqueta" class="ui-icon ui-icon-plus" title="Pulsa para añadir nuevas etiquetas"></span>
+		<span id="editEvent" class="ui-icon ui-icon-pencil" title="Pulsa para editar este evento"></span>
+		<span id="deleteEvent" class="ui-icon ui-icon-closethick" title="Pulsa para eliminar este evento"></span>
+	</div>
+	<p>Organizador: <em>Wanderlust Viajes</em></p>
+	<p>Fecha: <span class="editable">{{ fecha }}</span></p>
+	<div id="cont">
+		{% if ruta_imagen is not empty %}
+			<img src={{  ruta_imagen }}  alt="Primera imagen evento1" class="der" />
+			<span class="ui-icon ui-icon-closethick gestores der deleteImagen " name="1" title="Pulsa para eliminar esta imagen"></span>
+			<span class="ui-icon ui-icon-pencil gestores der editarImagen " name="1" title="Pulsa para editar esta imagen"></span>
+			<span id="anadirImagen" class="ui-icon ui-icon-plus gestores der " title="Pulsa para añadir nuevas imágenes"></span>
+		{% endif %}
+		<p><span class="editable">{{ descripcion }}</span></p>              
+		{% if ruta_imagen_secundaria is not empty %}
+			<img src={{  ruta_imagen_secundaria }} alt="Segunda imagen evento1" name="2" class="der"/>
+			<span class="ui-icon ui-icon-closethick gestores der deleteImagen " name="2" title="Pulsa para eliminar esta imagen"></span>
+			<span class="ui-icon ui-icon-pencil gestores der editarImagen " name="2" title="Pulsa para editar esta imagen"></span>		
+		{% endif %}
+		
+		<p><span class="editable">{{ descripcion_avanzada }}</span></p>
+		{% if etiquetas is not empty %}
+			{% for key,value in etiquetas %}
+				{% if value.id_evento == id %}
+					{% if value.etiqueta == "Parrafo" %}
+						<div class="gestores">
+							<span value="etiqueta{{ value.id_etiqueta }}" class="ui-icon ui-icon-closethick  der editarEle"  title="Pulsa para eliminar esta elemento"></span>
+							<span class="ui-icon ui-icon-pencil der editarEtiqueta" name="{{ value.id_etiqueta }}" title="Pulsa para editar este párrafo"></span>
+						</div>	
+						<p class="editable edit{{ value.id_etiqueta }}">{{value.contenido}}</p>
+					{% endif %}
+					{% if value.etiqueta == "Imagen" %}
+						<p><img class="editable" src={{ value.ruta_imagen }} /><span class="ui-icon ui-icon-pencil gestores der editarImagen editarImagenEtiqueta" name="etiqueta{{ value.id_etiqueta }}" title="Pulsa para editar esta imagen"></span><span value="etiqueta{{ value.id_etiqueta }}" class="ui-icon ui-icon-closethick gestores editarEle"  title="Pulsa para eliminar esta elemento"></span></p>
+					{% endif %}
+					{% if value.etiqueta == "Texto" %}
+					<div>
+						<span class="editable izq edit{{ value.id_etiqueta }}">{{ value.contenido }} </span>
+						<span value="etiqueta{{ value.id_etiqueta }}" class="ui-icon ui-icon-closethick izq editarEle"  title="Pulsa para eliminar esta elemento"></span>						
+						<span class="ui-icon ui-icon-pencil editarEtiqueta izq " name="{{ value.id_etiqueta }}" title="Pulsa para editar este texto"></span>
+					</div>
+					{% endif %}
+					
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+		<form id="formCambiosEvento" name="eventos"  method="post">
+			<input type="text" name="id_evento" hidden="true" id="formEid"/>
+			<input type="text" name="titulo" hidden="true" id="formEtitulo"/>
+			<input type="text" name="fecha" hidden="true" id="formEfecha"/>
+			<input type="text" name="descripcion" hidden="true" id="formEdes"/>
+			<input type="text" name="descripcion_avanzada" hidden="true" id="formEdesA"/>
+			<input type="button" id="enviarCambiosE" value="Guardar Cambios" />
+		</form>
+		<div id="subirImagen">
+			<form method="post" action="" enctype="multipart/form-data">
+				<div class='preview'>
+					<img src="" id="img" width="100" height="100">
+				</div>
+				<div >
+					<input type="file" id="file" name="file" />
+					<input type="button" class="button" value="Subir" id="upload">
+				</div>
+			</form>
+		</div>
+		<div id="editarImagen">
+			{% for key,value in todas_imagenes %}
+				<img class="seleccionable" width="20% "height="20%" src={{ value }}>
+			{% endfor %}
+			<form id="formCambiarImagen" name="cambiarImagen" method="post">
+				<input type="text" name="id_evento" hidden="true" class="id_evento"/>
+				<input type="text" name="accion" hidden="true" id="imagenPriSec"/>
+				<input type="text" name="id_etiqueta" hidden="true" id="id_etiqueta_cambioImagen"/>
+				<input type="text" name="borrado" hidden="true" id="borrarImagen"/>
+				<input type="text" name="imagen" hidden="true" id="imagenSeleccionada"/>
+				<input type="button" class="button" value="Cambiar imagen" id="botonCambiarImagen">
+			</form>
+		</div>
+		<div id="divAnadirEtiqueta">
+			<p>
+				Selecciona la etiqueta que quieres añadir
+				<select>
+					<option>Parrafo</option>
+					<option>Texto</option>
+					<option>Imagen</option>
+				</select>
+				<input type="button" id="submitAnadirEtiqueta" value="Añadir" />
+			</p>
+		</div>
+		
+		<div id="videos">
+			{% if video is not empty %}
+			<video  width="400" controls>
+				<source class="video" src={{ video }} type="video/mp4">
+				Your browser does not support HTML5 video.
+			</video>
+			{% endif %}
+		</div>
+	</div>
+	
+	{% endblock %}
+	{% block comentarios %}
+	<div id="oculto">
+		<div class="tituloSeccion">
+			<p>Comentarios</p>
+		</div>
+		<div id="comentariosArchivados">
+			{% for key,value in comentarios %}
+			<div>
+				<p class="nombre">Autor: {{ value.autor }}<span name={{ value.id_comentario }} class="ui-icon ui-icon-pencil moderadores editComment" title="Pulsa para editar este comentario"></span><span name={{ value.id_comentario }} class="ui-icon ui-icon-closethick moderadores deleteComment" title="Pulsa para eliminar este comentario"></span></p>
+				<p class="estrellas">
+					{% for i in 1..value.valoracion %}
+						&#9733;
+					{% endfor %}
+				</p>
+				<p class="fecha">Fecha: {{ value.fecha }}</p>
+				<p class="textoEditableComentario{{ value.id_comentario }}">{{ value.comentario }}</p>
+			</div>
+			{% endfor %}
+		</div>
+		<form id="formEnviarComentario" name="comentario" method="post">
+			<p>Nombre: <input type="text" name="nombre" id="nombreComentario"/> </p>
+			<p>E-mail: <input type="email" name="email" id="emailComentario"/> </p>
+			<p>Comentario: </p>
+			<p><textarea id="textoComentario" name="texto" onkeydown="comprobarPalabrasProhibidas()" contenteditable></textarea></p>
+			<div class="ec-stars-wrapper">
+				<a href="#estrellas=1" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+				<a href="#estrellas=2" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+				<a href="#estrellas=3" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+				<a href="#estrellas=4" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+				<a href="#estrellas=5" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+			</div>
+			<p><input type="button" id="enviarComentario" value="Enviar" /></p>
+			<input type="text" name="estrellas" hidden="true" value="1" id="estrellas"/>
+			<input type="text" name="idEvento" hidden="true" id="idEvento"/>
+		</form>
+		
+	</div>
+	{% endblock %}
+	
+	{% block funcionalidad %}
+	<div class="cursiva">
+		<p>Fecha de creación: {{ fecha_creacion }}</p>
+		<p>Fecha de modificación: {{ fecha_modificacion }}</p>
+	</div>
+
+	<div class="centrame">
+		<a href={{ "eventos_imprimir.php?id=" ~ id  }} class="imprimir">Imprimir Evento</a>
+		<input type="button" id="botonAbrirComentario" value="Comentarios" onclick="cambiarVisibilidad()"/>
+	</div>
+	
+	{% endblock %}
+{% endblock %}
